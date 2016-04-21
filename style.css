@@ -1,0 +1,24 @@
+/*
+ * Theme Name: My Timber Starter Theme
+ * Description: Starter Theme to use with Timber
+ * Author: Upstatement and YOU!
+*/
+html,
+body{
+	background-color: #EEEDEA;
+	height: 100%;
+	width: 100%;
+}
+
+.container{
+	background-color: #fff;
+	min-height: 100%;
+	border-left:1px solid #E2E2E2;
+	border-right:1px solid #E2E2E2;
+}
+
+@media (min-width: 768px){
+	.navbar-header {
+	    float: none;
+	}
+}
