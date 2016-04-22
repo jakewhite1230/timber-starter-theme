@@ -35,6 +35,7 @@ class StarterSite extends TimberSite {
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::get_context();';
 		$context['menu'] = new TimberMenu();
+		$context['primary_menu'] = new TimberMenu('primary-menu');
 		$context['site'] = $this;
 		return $context;
 	}
@@ -43,6 +44,7 @@ class StarterSite extends TimberSite {
 		/* this is where you can add your own fuctions to twig */
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter( 'myfoo', new Twig_Filter_Function( 'myfoo' ) );
+		$twig->addFilter( 'render_post_excerpt', new Twig_Filter_Function( 'render_post_excerpt' ) );
 		return $twig;
 	}
 
@@ -103,9 +105,19 @@ function custom_mtypes( $m ){
 }
 add_filter( 'upload_mimes', 'custom_mtypes' );
 
+function theme_prefix_setup() {
+    add_theme_support( 'custom-logo' );
+}
+add_action( 'after_setup_theme', 'theme_prefix_setup' );
+
 new StarterSite();
 
 function myfoo( $text ) {
 	$text .= ' test!';
 	return $text;
+}
+
+function render_post_excerpt($id){
+	$context['nav_post'] = Timber::get_post($id);
+	return $context;
 }
