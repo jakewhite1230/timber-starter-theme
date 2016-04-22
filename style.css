@@ -20,5 +20,45 @@ body{
 @media (min-width: 768px){
 	.navbar-header {
 	    float: none;
+	    height: 70px;
+    	border-bottom: 1px solid #2f2f2f;
 	}
 }
+
+.navbar-brand{
+	width: 390px;
+}
+
+.navbar-default {
+   background-color: #fff; 
+   border-color: #fff;
+}
+
+@media (min-width: 768px){
+	.navbar-nav {
+	    float: none;
+	    margin: 0;
+	    width: 100%;
+	    display: table;
+	    border-spacing: 10px;
+	    margin-top: 20px;
+	}
+
+	.navbar-nav>li {
+	    float: none !important;
+	    display: table-cell;
+	    font-size: 1.5em;
+	    border-bottom: 1px solid #EEEDEA;
+	    padding-bottom: 20px;
+	}
+}
+
+
+.navbar-default .navbar-nav>li>a {
+    color: #2f2f2f;
+    padding-left: 0px;
+    margin-left: 0px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
