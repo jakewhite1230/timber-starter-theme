@@ -1,5 +1,4 @@
 <?php
-require_once dirname( __FILE__ ) . '/menu-item-custom-fields/menu-item-custom-fields.php';
 if ( ! class_exists( 'Timber' ) ) {
 	add_action( 'admin_notices', function() {
 			echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
@@ -60,6 +59,10 @@ function register_theme_menus(){
 }
 
 add_action('init', 'register_theme_menus');
+
+require_once dirname( __FILE__ ) . '/menu-item-custom-fields/menu-item-custom-fields.php';
+require_once 'inc/description_nav_walker.php';
+
 
 function theme_styles() {
 

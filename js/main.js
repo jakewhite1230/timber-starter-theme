@@ -3,6 +3,24 @@ jQuery(document).ready(function($){
     $("#neck-nav").sticky({topSpacing:100});
   });
 
+  $('.nav-link').on('click',function(e){
+    e.preventDefault();
+    var navId = $(this).attr('id');
+    if($(this).hasClass('active-dropdown')){
+      $(this).removeClass('active-dropdown');
+      $('.nav-link').removeClass('active-dropdown');
+    } else{
+      $('.nav-link').removeClass('active-dropdown');
+      $(this).addClass('active-dropdown');
+    }
+    if($(this).hasClass('active-dropdown')){
+      $('.nav-dropdown').hide();
+      $('#nav-dropdown-' + navId).show();
+    } else{
+      $('#nav-dropdown-' + navId).hide();
+    }
+  });
+
 $('a').smoothScroll({
   offset: -120,
 

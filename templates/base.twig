@@ -25,24 +25,39 @@
 						<ul class="nav navbar-nav">
 						{% for item in primary_menu.get_items %}
 							<li class="nav-item {{item.classes | join(' ')}}">
-								<a class="nav-link {{item._menu_item_object_id}}" href="{{item.get_link}}">{{item.title}}</a>
-
-										
-
-
-
-								{% if item.get_children %}
-									<ul class="nav nav-drop">
-									{% for child in item.get_children %}
-										<li class="nav-drop-item">
-											<a class="nav-link" href="{{child.get_link}}">{{child.title}}</a>
-										</li>
-									{% endfor %}
-									</ul>
-								{% endif %}
+								<a class="nav-link" id="{{item.id}}" href="{{item.get_link}}">{{item.title}}</a>
 							</li>
 						{% endfor %}
 						</ul>
+						{%for item in primary_menu.get_items %}
+						{% if item.get_children %}
+									<div class="nav-dropdown clearfix" id="nav-dropdown-{{item.id}}">
+										<div class="description col-xs-12 col-md-6">
+											<h3>{{item.title}}</h3>
+											<p>{{item._textarea_item_text_area_description}}</p>
+											<a class="dropdown-link" href="{{item.get_link}}">Learn More</a>
+										</div>
+										<div class="nav-sub-nav col-xs-12 col-md-6">
+											<ul class="nav nav-drop">
+											{% for child in item.get_children %}
+												<li class="nav-drop-item">
+													<a class="nav-link" href="{{child.get_link}}">{{child.title}}</a>
+													{% if item.get_children %}
+														<ul>
+														{% for grandchild in child.get_children %}
+															<li class="nav-drop-item grandchild-item">
+																<a class="nav-link" href="{{grandchild.get_link}}">{{grandchild.title}}</a>
+															</li>
+														{% endfor%}
+														</ul>
+													{% endif %}
+												</li>
+											{% endfor %}
+										</ul>
+										</div>
+									</div>
+								{% endif %}
+						{% endfor %}
 					</div><!-- #nav -->
 			{% endblock %}
 			</nav>

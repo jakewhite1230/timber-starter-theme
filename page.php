@@ -26,14 +26,7 @@ $data['page'] = new TimberPost();
 
 $templates = array('page.twig');
 if (is_front_page()){
-
-    // get latest three posts
-    $args = array(
-        'posts_per_page' => 3
-    );
-    $data['posts'] = Timber::get_posts($args);
-
-        // add your twig view to the front of the templates array
+// add front-page functionality of the templates array
        array_unshift($templates, 'front-page.twig');
 }
 

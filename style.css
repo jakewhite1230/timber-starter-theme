@@ -67,4 +67,15 @@ body{
     text-align: center;
     text-transform: uppercase;
 }
+.nav-dropdown{
+	position: absolute;
+	width: 100%;
+	background-color: #303030;
+	display: none;
+}
+
+.nav-dropdown h3,
+.nav-dropdown p{
+	color: #fff;
+}
 
