@@ -8,30 +8,34 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
-		<div class="container">
 			<header class="header" >
-				<nav class="navbar navbar-default">
-			{% block header %}
-			<div class="navbar-header">
-	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		              <span class="sr-only">Toggle navigation</span>
-		              <span class="icon-bar"></span>
-		              <span class="icon-bar"></span>
-		              <span class="icon-bar"></span>
-		            </button>
-	           {{function('the_custom_logo')}}
-	          </div>
-					 <div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-						{% for item in primary_menu.get_items %}
-							<li class="nav-item {{item.classes | join(' ')}}">
-								<a class="nav-link" id="{{item.id}}" href="{{item.get_link}}">{{item.title}}</a>
-							</li>
-						{% endfor %}
-						</ul>
+				<div class="container">
+					<nav class="navbar navbar-default">
+					{% block header %}
+					<div class="navbar-header">
+			            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				              <span class="sr-only">Toggle navigation</span>
+				              <span class="icon-bar"></span>
+				              <span class="icon-bar"></span>
+				              <span class="icon-bar"></span>
+				            </button>
+			           {{function('the_custom_logo')}}
+			          </div>
+							 <div id="navbar" class="navbar-collapse collapse">
+								<ul class="nav navbar-nav">
+								{% for item in primary_menu.get_items %}
+									<li class="nav-item {{item.classes | join(' ')}}">
+										<a class="nav-link" id="{{item.id}}" href="{{item.get_link}}">{{item.title}}</a>
+									</li>
+								{% endfor %}
+								</ul>
+					</div><!-- #nav -->
+					</nav>
+					</div>
+					<div class="container dropdown-container">
 						{%for item in primary_menu.get_items %}
 						{% if item.get_children %}
-									<div class="nav-dropdown clearfix" id="nav-dropdown-{{item.id}}">
+									<div class="nav-dropdown clearfix" id="nav-dropdown-{{item.id}}" style="border-top: 5px solid {{item._menu_color_picker_menu_border_color}}">
 										<div class="description col-xs-12 col-md-6">
 											<h3>{{item.title}}</h3>
 											<p>{{item._textarea_item_text_area_description}}</p>
@@ -58,15 +62,13 @@
 									</div>
 								{% endif %}
 						{% endfor %}
-					</div><!-- #nav -->
-			{% endblock %}
-			</nav>
+			{% endblock %}	
+					</div>
 		</header>
 
 
-
 		<section id="content" role="main" class="content-wrapper">
-
+		<div class="container">
 
 
 			{% if title %}<h1>{{title}}</h1>{% endif %}
@@ -81,13 +83,16 @@
 				</aside>
 			{% endif %}
 		</section>
-
-		{% block footer %}
+		<section>
+			{% block footer %}
 			<footer id="footer">
+			<div class="container">
 				{% include 'footer.twig' %}
+			</div>
 			</footer>
 			{{ function('wp_footer') }}
 		{% endblock %}
 		</div>
+		</section>
 	</body>
 </html>

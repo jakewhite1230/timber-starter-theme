@@ -26,6 +26,7 @@ $data['page'] = new TimberPost();
 
 $templates = array('page.twig');
 if (is_front_page()){
+	$data['hero_widget'] = Timber::get_widgets('hero-widget');
 // add front-page functionality of the templates array
        array_unshift($templates, 'front-page.twig');
 }

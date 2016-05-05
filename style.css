@@ -79,3 +79,12 @@ body{
 	color: #fff;
 }
 
+.navbar{
+	margin-bottom: 0px !important;
+}
+
+.dropdown-container{
+	position: relative;
+	padding: 0px;
+}
+

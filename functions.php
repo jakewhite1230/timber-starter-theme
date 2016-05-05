@@ -119,8 +119,32 @@ function myfoo( $text ) {
 	$text .= ' test!';
 	return $text;
 }
+function sidebar_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'Footer Widget',
+		'id'            => 'footer-widget',
+		'before_widget' => '<div class="col-12">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="module-heading">',
+		'after_title'   => '</h5>'
+	) );
+
+	register_sidebar( array(
+		'name'          => 'Hero Widget',
+		'id'            => 'hero-widget',
+		'before_widget' => '<div class="col-12">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="module-heading">',
+		'after_title'   => '</h5>'
+	) );
+
+}
+add_action( 'widgets_init', 'sidebar_widgets_init' );
+require_once 'inc/featured-image-widget.php';
 
 function render_post_excerpt($id){
 	$context['nav_post'] = Timber::get_post($id);
 	return $context;
 }
+
