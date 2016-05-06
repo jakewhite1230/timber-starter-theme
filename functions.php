@@ -71,7 +71,7 @@ function theme_styles() {
 
 	wp_enqueue_style('bootstrap_css', get_template_directory_uri() . '/css/bootstrap.min.css');
 	wp_enqueue_style('main_css', get_template_directory_uri() . '/style.css');
-	wp_enqueue_style('googlefont_css', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic');
+	wp_enqueue_style('googlefont_css', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,600italic');
 
 }
 

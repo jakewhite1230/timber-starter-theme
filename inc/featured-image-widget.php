@@ -8,6 +8,14 @@ Version: 1.0
 Author URI: http://mydomain.com
 */
 // Block direct requests
+
+add_action( 'init', 'hero_add_excerpts_to_pages' );
+function hero_add_excerpts_to_pages() {
+	add_post_type_support( 'page', 'excerpt' );
+	}
+
+//add_action('manage_posts_custom_column', '');	
+
 if ( !defined('ABSPATH') )
 	die('-1');
 	
@@ -66,11 +74,18 @@ class Featured_Hero_Section extends WP_Widget {
 		if ( array_key_exists('before_widget', $args) ) echo $args['before_widget'];
 		
 		if ( $post ) {
-		
-			echo get_the_post_thumbnail( $post->ID, array(250,500), array('class'=>'story_featured_img') );
-			echo '<h3 class="story_widget_title">' . apply_filters( 'widget_title', $post->post_title ). '</h3>';
-			echo '<p class="story_widget_excerpt">' . $post->post_excerpt . '</p>';
-			echo '<p class="story_widget_readmore"><a href="' . get_permalink( $post->ID ) . '" title="Read the story, ' . $post->post_title . '">more...</a></p>';
+			 $thumbnail_src = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
+			?>
+			<div class="front-page-hero post-<?php echo apply_filters( 'widget_title', $post->ID ); ?>" style="background-image: url('<?php echo $thumbnail_src; ?>');">
+				<div class="hero_widget_post_content">
+					<h3 class="hero_widget_title"><?php echo apply_filters( 'widget_title', $post->post_title );?></h3>
+					<p class="hero_widget_excerpt"><?php echo $post->post_excerpt; ?></p>
+					<p class="hero_widget_learnmore"><a href="<?php get_permalink( $post->ID ) ?>" title="Learn More, <?php $post->post_title; ?>">Learn More <span class="glyphicon glyphicon-triangle-right"></span></a></p>
+				</div>
+			</div>
+
+			<?php
+
 			
 		} else {
 		

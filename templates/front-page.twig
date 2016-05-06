@@ -1,6 +1,10 @@
 {% extends "base.twig" %}
 {% block content %}
-{{ hero_widget }}
+{% if hero_widget %}
+	{{ hero_widget }}
+	{% else %}
+	<p class="set-up-needed">Set up your Hero Widget with Featured Hero Section from the Admin Appearance Widgets Panel.</p>
+{% endif %}
 
 	<div class="content-wrapper">
 		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">

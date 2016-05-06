@@ -25,7 +25,12 @@ body{
 	}
 }
 
-
+.set-up-needed{
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 1.5em;
+}
 .custom-logo-link{
 	width: 390px;
 	float: left;
@@ -86,5 +91,44 @@ body{
 .dropdown-container{
 	position: relative;
 	padding: 0px;
+	z-index: 1000;
+}
+.front-page-hero{
+	width: 100%;
+	height: 400px;
+	background-size: cover;
+	color: #fff;
+	padding: 25px;
 }
 
+.hero_widget_title{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 4em;
+}
+
+.hero_widget_post_content{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+}
+
+.hero_widget_excerpt{
+	font-size: 1.3em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+.hero_widget_learnmore a{
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	opacity: 0.8;
+}
+.hero_widget_learnmore a:hover,
+.hero_widget_learnmore a:active,
+.hero_widget_learnmore a:focus{
+	opacity: 1;
+	text-decoration: none;
+}
