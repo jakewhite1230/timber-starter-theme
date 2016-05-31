@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Hero Section Widget
+Plugin Name: Featured Posts Widget
 Plugin URI: http://alabaster.io
 Description: Easily set up a hero section widget
 Author: jake White
@@ -8,65 +8,25 @@ Version: 1.0
 Author URI: http://jake.alabaster.io
 */
 // Block direct requests
-
-add_action( 'init', 'hero_add_excerpts_to_pages' );
-function hero_add_excerpts_to_pages() {
-	add_post_type_support( 'page', 'excerpt' );
-	}
-// add_action('user_register', 'set_user_metaboxes');
-add_action('admin_init', 'set_user_metaboxes');
-function set_user_metaboxes($user_id=NULL) {
-
-    // These are the metakeys we will need to update
-    $meta_key['order'] = 'meta-box-order_post';
-    $meta_key['hidden'] = 'metaboxhidden_post';
-
-    // So this can be used without hooking into user_register
-    if ( ! $user_id)
-        $user_id = get_current_user_id(); 
-
-    // Set the default order if it has not been set yet
-    if ( ! get_user_meta( $user_id, $meta_key['order'], true) ) {
-        $meta_value = array(
-            'normal' => 'postexcerpt',
-        );
-        update_user_meta( $user_id, $meta_key['order'], $meta_value );
-    }
-
-    // Set the default hiddens if it has not been set yet
-    if ( ! get_user_meta( $user_id, $meta_key['hidden'], true) ) {
-        $meta_value = array('postcustom','trackbacksdiv','commentstatusdiv','commentsdiv','slugdiv','authordiv','revisionsdiv', 'formatdiv');
-        update_user_meta( $user_id, $meta_key['hidden'], $meta_value );
-    }
-}
-
-
-
-
-
-
-
-
-
 if ( !defined('ABSPATH') )
 	die('-1');
 	
 	
 add_action( 'widgets_init', function(){
-     register_widget( 'Featured_Hero_Section' );
+     register_widget( 'Featured_Posts' );
 });	
 /**
  * Adds My_Widget widget.
  */
-class Featured_Hero_Section extends WP_Widget {
+class Featured_Posts extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
-			'Featured_Hero_Section', // Base ID
-			__('Featured Hero Section', 'text_domain'), // Name
-			array('description' => __( 'Set up a featured hero section', 'text_domain' ),) // Args
+			'Featured_Posts', // Base ID
+			__('Featured Posts', 'text_domain'), // Name
+			array('description' => __( 'Set up a featured post', 'text_domain' ),) // Args
 		);
 	}
 	/**
@@ -78,6 +38,15 @@ class Featured_Hero_Section extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	public function widget( $args, $instance ) {
+		$the_sidebars = wp_get_sidebars_widgets();
+		$count = count( $the_sidebars['featured-posts'] );
+		$column_count = 12 / $count;
+
+
+
+
+
+
 		if ( isset( $instance[ 'display_post_content' ] ) && $instance['display_post_content'] == 1 ) {
 			$display_post_content = 1;
 		}
@@ -85,7 +54,7 @@ class Featured_Hero_Section extends WP_Widget {
 			$display_post_content = 0;
 		}
 		// get the excerpt of the required story
-		if ( $instance['hero_id'] == 0 ) {
+		if ( $instance['featured_post_id'] == 0 ) {
 		
 			$gp_args = array(
 				'posts_per_page' => 1,
@@ -104,7 +73,7 @@ class Featured_Hero_Section extends WP_Widget {
 		
 		} else {
 		
-			$post = get_post( $instance['hero_id'] );	
+			$post = get_post( $instance['featured_post_id'] );	
 		
 		}
 				
@@ -113,23 +82,24 @@ class Featured_Hero_Section extends WP_Widget {
 		if ( $post ) {
 			 $thumbnail_src = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
 			?>
+			<div class="col-xs-12 col-sm-<?php echo $column_count ; ?> post-<?php echo apply_filters( 'widget_title', $post->ID );?>" >
 			<?php if($display_post_content == 0){
 				echo '<a href="' . get_permalink( $post->ID ) . '">';
 				}?>
-			<div class="front-page-hero post-<?php echo apply_filters( 'widget_title', $post->ID );?>" style="background-image: url('<?php echo $thumbnail_src; ?>');">
+				<div class="featured-post" style="background-image: url('<?php echo $thumbnail_src; ?>');">
 			<?php if($display_post_content == 1){?>
-				<div class="hero_widget_post_content">
-					<h3 class="hero_widget_title"><?php echo apply_filters( 'widget_title', $post->post_title );?></h3>
-					<p class="hero_widget_excerpt"><?php echo $post->post_excerpt; ?></p>
-					<p class="hero_widget_learnmore"><a href="<?php get_permalink( $post->ID ) ?>" title="Learn More, <?php $post->post_title; ?>">Learn More <span class="glyphicon glyphicon-triangle-right"></span></a></p>
+				<div class="featured_post_content">
+					<a href="<?php echo get_permalink( $post->ID ); ?>">
+						<h3 class="featured_post_title"><?php echo apply_filters( 'widget_title', $post->post_title );?></h3>	
+					</a>
 				</div>
 
 			<?php }?>
-				
-			</div>
+				</div>
 			<?php if($display_post_content == 0){
 				echo '</a>';
 				}?>
+			</div>
 			<?php
 
 			
@@ -149,11 +119,11 @@ class Featured_Hero_Section extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		
-		if ( isset( $instance[ 'hero_id' ] ) ) {
-			$hero_id = $instance[ 'hero_id' ];
+		if ( isset( $instance[ 'featured_post_id' ] ) ) {
+			$featured_post_id = $instance[ 'featured_post_id' ];
 		}
 		else {
-			$hero_id = 0;
+			$featured_post_id = 0;
 		}
 
 		if ( isset( $instance[ 'display_post_content' ] ) && $instance['display_post_content'] == 1 ) {
@@ -166,9 +136,9 @@ class Featured_Hero_Section extends WP_Widget {
 		?>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'hero_id' ); ?>"><?php _e( 'Featured:' ); ?></label> 
+			<label for="<?php echo $this->get_field_id( 'featured_post_id' ); ?>"><?php _e( 'Featured:' ); ?></label> 
 			
-			<select id="<?php echo $this->get_field_id( 'hero_id' ); ?>" name="<?php echo $this->get_field_name( 'hero_id' ); ?>">
+			<select id="<?php echo $this->get_field_id( 'featured_post_id' ); ?>" name="<?php echo $this->get_field_name( 'featured_post_id' ); ?>">
 				<option value="0">Most recent</option> 
 		<?php 
 		// get the exceprt of the most recent story
@@ -183,7 +153,7 @@ class Featured_Hero_Section extends WP_Widget {
 		$posts = get_posts( $gp_args );
 			foreach( $posts as $post ) {
 			
-				$selected = ( $post->ID == $hero_id ) ? 'selected' : ''; 
+				$selected = ( $post->ID == $featured_post_id ) ? 'selected' : ''; 
 				
 				if ( strlen($post->post_title) > 30 ) {
 					$title = substr($post->post_title, 0, 27) . '...';
@@ -215,7 +185,7 @@ class Featured_Hero_Section extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		
 		$instance = array();
-		$instance['hero_id'] = ( ! empty( $new_instance['hero_id'] ) ) ? strip_tags( $new_instance['hero_id'] ) : '';
+		$instance['featured_post_id'] = ( ! empty( $new_instance['featured_post_id'] ) ) ? strip_tags( $new_instance['featured_post_id'] ) : '';
 		$instance['display_post_content'] = ( ! empty( $new_instance['display_post_content'] ) ) ? strip_tags( $new_instance['display_post_content'] ) : '';
 		return $instance;
 	}

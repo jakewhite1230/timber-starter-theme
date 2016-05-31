@@ -22,8 +22,18 @@
  */
 
 $data = Timber::get_context();
-$data['page'] = new TimberPost();
+$args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 9
+    );
+$posts = Timber::get_posts($args);
 
-$templates = array('page.twig');
+$data['posts'] = $posts;
+
+$templates = array('front-page.twig');
+$data['hero_widget'] = Timber::get_widgets('hero-widget');
+$data['featured_posts'] = Timber::get_widgets('featured-posts');
+
+
 
 Timber::render( $templates, $data );

@@ -132,3 +132,74 @@ body{
 	opacity: 1;
 	text-decoration: none;
 }
+
+
+.featured-posts-section{
+	margin: 25px 0px;
+}
+.featured-post{
+	height: 150px;
+	width: 100%;
+	background-size: cover;
+	background-position: center center;
+	margin: auto;
+	display: block;
+	position: relative;
+}
+
+.featured_post_content{
+	position: absolute;
+	bottom: 0px;
+	padding: 10px;
+}
+
+.featured_post_content a h3{
+	opacity: 0.9;
+}
+
+.featured_post_content a:hover h3,
+.featured_post_content a:active h3,
+.featured_post_content a:focus h3{
+	opacity: 1;
+}
+
+.featured_post_content a:hover,
+.featured_post_content a:active,
+.featured_post_content a:focus{
+	text-decoration: none;
+}
+
+.featured_post_title{
+	color:#fff;
+}
+
+.front-post-clip{
+	height: 150px;
+	border-bottom: 1px solid #EEEDEA;
+}
+.front-post-clip a:hover,
+.front-post-clip a:active,
+.front-post-clip a:focus{
+	text-decoration: none;
+}
+.front-post-clip h3{
+	color: #2f2f2f;
+}
+
+.clip-image{
+	height: 65%;
+	position: relative;
+	background-size: cover;
+	background-position: center center;
+}
+
+.clip-image h3{
+	color: #fff;
+	position: absolute;
+	bottom:0px;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+.front-page-articles{
+	padding: 25px 0px;
+}

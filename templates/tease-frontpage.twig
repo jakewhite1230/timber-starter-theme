@@ -1,0 +1,13 @@
+<div class="front-post-clip">
+{%if counter % 2 == 1%}	
+	<div class="clip-image" style="background-image:url({{post.thumbnail.src}});">
+{%endif%}
+		<a href="{{post.link}}">
+			<h3>{{post.title}}</h3>
+		</a>
+{%if counter % 2 == 1%}	
+	</div>
+{%endif%}
+
+	<p>{{post.post_content|excerpt(10)}}</p>
+</div>

@@ -133,7 +133,16 @@ function sidebar_widgets_init() {
 	register_sidebar( array(
 		'name'          => 'Hero Widget',
 		'id'            => 'hero-widget',
-		'before_widget' => '<div class="col-12">',
+		'before_widget' => '<div class="hero-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="module-heading">',
+		'after_title'   => '</h5>'
+	) );
+
+	register_sidebar( array(
+		'name'          => 'Featured Posts',
+		'id'            => 'featured-posts',
+		'before_widget' => '<div class="featured-post-container">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="module-heading">',
 		'after_title'   => '</h5>'
@@ -142,6 +151,7 @@ function sidebar_widgets_init() {
 }
 add_action( 'widgets_init', 'sidebar_widgets_init' );
 require_once 'inc/featured-image-widget.php';
+require_once 'inc/featured-posts-widget.php';
 
 function render_post_excerpt($id){
 	$context['nav_post'] = Timber::get_post($id);
