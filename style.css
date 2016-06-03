@@ -184,6 +184,9 @@ body{
 }
 .front-post-clip h3{
 	color: #2f2f2f;
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
 }
 
 .clip-image{
@@ -191,6 +194,12 @@ body{
 	position: relative;
 	background-size: cover;
 	background-position: center center;
+	padding: 10px;
+}
+
+.article-column:nth-child(even){
+	border-left:1px solid #EEEDEA;
+	border-right:1px solid #EEEDEA;
 }
 
 .clip-image h3{
@@ -201,5 +210,6 @@ body{
 }
 
 .front-page-articles{
-	padding: 25px 0px;
+	padding: 50px 0px 100px;
+	border-top: 2px solid #2f2f2f;
 }

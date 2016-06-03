@@ -62,7 +62,7 @@ add_action('init', 'register_theme_menus');
 
 require_once dirname( __FILE__ ) . '/menu-item-custom-fields/menu-item-custom-fields.php';
 require_once 'inc/description_nav_walker.php';
-
+require_once 'inc/sidebar-limits.php';
 
 function theme_styles() {
 
@@ -124,6 +124,7 @@ function sidebar_widgets_init() {
 	register_sidebar( array(
 		'name'          => 'Footer Widget',
 		'id'            => 'footer-widget',
+		'description'   => 'Add content to the footer',
 		'before_widget' => '<div class="col-12">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="module-heading">',
@@ -133,6 +134,7 @@ function sidebar_widgets_init() {
 	register_sidebar( array(
 		'name'          => 'Hero Widget',
 		'id'            => 'hero-widget',
+		'description'   => 'Place a Featured Hero Section Widget here and select ONE post',
 		'before_widget' => '<div class="hero-widget">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="module-heading">',
@@ -142,6 +144,7 @@ function sidebar_widgets_init() {
 	register_sidebar( array(
 		'name'          => 'Featured Posts',
 		'id'            => 'featured-posts',
+		'description'   => 'Place Featured Post Widgets here. You can have up to FOUR',
 		'before_widget' => '<div class="featured-post-container">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="module-heading">',

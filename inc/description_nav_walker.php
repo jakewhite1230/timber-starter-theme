@@ -8,7 +8,7 @@ function wptuts_add_color_picker( $hook ) {
         wp_enqueue_style( 'wp-color-picker' ); 
          
         // Include our custom jQuery file with WordPress Color Picker dependency
-        wp_enqueue_script( 'custom-script-handle', plugins_url( 'custom-script.js', __FILE__ ), array( 'wp-color-picker' ), false, true ); 
+        wp_enqueue_script( 'custom-script-handle', get_template_directory_uri() . '/inc/custom-script.js', array( 'wp-color-picker' ), false, true ); 
     }
 }
 class Menu_Item_Custom_Fields_Example {

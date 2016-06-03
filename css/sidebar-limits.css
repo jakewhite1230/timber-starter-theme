@@ -1,0 +1,22 @@
+.sidebar-full
+{
+    background-color: #5fcf80 !important;
+    height: 100% !important;
+    margin-bottom: 0px !important;
+}
+
+.sidebar-full h2,
+.sidebar-full .sidebar-name-arrow,
+.sidebar-full .description,
+.sidebar-morethanfull h2,
+.sidebar-morethanfull .sidebar-name-arrow,
+.sidebar-morethanfull .description{
+	color: #fff;
+}
+
+.sidebar-morethanfull
+{
+    background-color: #f05555 !important;
+    height: 100% !important;
+    margin-bottom: 0px !important;
+}

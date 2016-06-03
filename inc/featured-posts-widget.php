@@ -166,7 +166,7 @@ class Featured_Posts extends WP_Widget {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'display_post_content' ); ?>">Display Post Content</label>
+			<label for="<?php echo $this->get_field_id( 'display_post_content' ); ?>">Display Post Title</label>
 			<input id="<?php echo $this->get_field_id( 'display_post_content' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'display_post_content' ); ?>" value="1" <?php if($display_post_content == 1){echo 'checked';}?>>
 		</p>
 
